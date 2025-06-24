@@ -11,11 +11,11 @@ function TravelProvider({ children }) {
   return (
     <TravelContext value={{ travels, filteredData }}>{children}</TravelContext>
   );
-}
+};
 
 function useTravel() {
   const context = useContext(TravelContext);
   return context;
-}
+};
 
 export { TravelProvider, useTravel };

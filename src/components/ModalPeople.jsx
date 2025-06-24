@@ -37,4 +37,4 @@ export default function ModalPeople({people}) {
       </Modal>
     </>
   );
-}
+};

@@ -18,5 +18,5 @@ export default function PeopleCard ({people, travel}) {
                 </li>
               </ul>
             </div>
-    )
-}
+    );
+};

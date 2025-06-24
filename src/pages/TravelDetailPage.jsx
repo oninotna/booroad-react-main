@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useTravel } from "../contexts/TravelContext";
 import { useState, useEffect } from "react";
 import PeopleCard from "../components/PeopleCard";
+import FormAddPeople from "../components/FormAddPeople";
 
 export default function TravelDetailPage() {
   const { id } = useParams();
@@ -10,6 +11,8 @@ export default function TravelDetailPage() {
   const currentPeopleList = currentTravel[0].peopleList;
   const [peopleFilter, setPeopleFilter] = useState('');
   const [filteredPeople, setFilteredPeople] = useState(currentPeopleList)
+   const [update, setUpdate] = useState(true)
+
   
   
   useEffect(() => {
@@ -17,7 +20,7 @@ export default function TravelDetailPage() {
       people.firstName.toLowerCase().includes(peopleFilter.toLowerCase()) ||
     people.lastName.toLowerCase().includes(peopleFilter.toLowerCase()))
     setFilteredPeople(listUpdate)
-  }, [peopleFilter])
+  }, [peopleFilter, update])
   
   return (
     <>
@@ -43,6 +46,7 @@ export default function TravelDetailPage() {
           ))}
         </div>
       </div>
+      <FormAddPeople travel={currentTravel[0]} update={() => setUpdate(!update)}/>
     </>
   );
-}
+};
