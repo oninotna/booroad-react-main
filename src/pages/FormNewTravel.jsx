@@ -27,6 +27,19 @@ export default function FormNewTravel () {
    const handleSubmit = (e) => {
     e.preventDefault();
 
+    const errorData = [];
+    if (formData.destination.length < 3 || /\d/.test(formData.destination)) {
+      errorData.push("Destinazione non valida");
+    }
+    if (formData.dateStart > formData.dateEnd) {
+      errorData.push(" Date non valide");
+    }
+    
+    if (errorData.length) {
+      alert(errorData)
+      return;
+    }
+    
     travels.push(formData);
     navigate("/travels");
    };
@@ -46,7 +59,7 @@ export default function FormNewTravel () {
         <div>
           <h1 className="my-3">Aggiungi nuovo viaggio</h1>
           <form className="row align-items-end g-3" onSubmit={handleSubmit}>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
               <label htmlFor="destination">Destinazione</label>
               <input
                 className="form-control"
@@ -55,9 +68,10 @@ export default function FormNewTravel () {
                 name="destination"
                 value={formData.destination}
                 onChange={changeFormData}
+                required
               />
             </div>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
               <label htmlFor="dateStart">Data di partenza</label>
               <input
                 className="form-control"
@@ -66,9 +80,10 @@ export default function FormNewTravel () {
                 name="dateStart"
                 value={formData.dateStart}
                 onChange={changeFormData}
+                required
               />
             </div>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
               <label htmlFor="dateEnd">Data di rientro</label>
               <input
                 className="form-control"
@@ -77,19 +92,21 @@ export default function FormNewTravel () {
                 name="dateEnd"
                 value={formData.dateEnd}
                 onChange={changeFormData}
+                required
               />
             </div>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
                 <label htmlFor="img">Immagine di copertina</label>
                 <input className="form-control" 
                 type="text"
                 id="img"
                 name="img"
                 value={formData.img} 
-                onChange={changeFormData}/>
+                onChange={changeFormData}
+                />
             </div>
-            <div className="col-4"></div>
-            <div className="col-4 text-end">
+            <div className="col-sm-12 col-md-6 col-lg-4"></div>
+            <div className="col-sm-12 col-md-6 col-lg-4 text-end">
                 <Link to="/travels" className="btn btn-primary me-2">
               Torna alla home
             </Link>

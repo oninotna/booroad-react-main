@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function TravelCard({ travel }) {
   return (
-    <div className="col-4">
+    <div className="col-sm-12 col-md-6 col-lg-4">
       <Card className="h-100">
-        <Card.Img variant="top" src={travel.img} />
+        <Card.Img variant="top" src={travel.img.length ? travel.img : "https://placehold.co/600x400"} />
         <Card.Body>
           <Card.Title>{travel.destination}</Card.Title>
           <Card.Text>

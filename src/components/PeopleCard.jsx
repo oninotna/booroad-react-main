@@ -3,7 +3,7 @@ import ModalPeople from "./ModalPeople";
 
 export default function PeopleCard ({people, travel}) {
     return (
-        <div className="col-3 h-100" >
+        <div className="col-sm-6 col-md-4 col-lg-3 h-100" >
               <ul className="list-group h-100">
                 <li className="list-group-item">
                   <strong>Name: </strong>

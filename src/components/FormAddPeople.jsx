@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function FormAddPeople ({travel, update}) {
    const defaultFormData = {
@@ -29,6 +29,28 @@ export default function FormAddPeople ({travel, update}) {
    const handleSubmit = (e) => {
     e.preventDefault();
 
+    const errorData = [];
+    if (formData.firstName.length < 3 || /\d/.test(formData.firstName)) {
+      errorData.push("Nome non valido");
+    };
+    if (formData.lastName.length < 3 || /\d/.test(formData.lastName)) {
+      errorData.push(" Cognome non valido");
+    };
+    if (formData.idCode.length !== 16 ) {
+      errorData.push(" Codice fiscale non valido");
+    };
+    // if (formData.email. ) {
+    //   errorData.push(" Email non valida");
+    // };
+    if (formData.phone.length !== 10 || isNaN(parseInt(formData.phone))) {
+      errorData.push(" Numero non valido")
+    };
+
+    if (errorData.length) {
+      alert(errorData)
+      return;
+    }
+
     travel.peopleList.push(formData);
     update();
     console.log(formData);
@@ -39,7 +61,7 @@ export default function FormAddPeople ({travel, update}) {
         <div className="container mt-5">
         <h1>Aggiungi nuovi partecipanti</h1>
         <form className="row align-items-end g-3" onSubmit={handleSubmit}>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
               <label htmlFor="firstName">Nome</label>
               <input
                 className="form-control"
@@ -48,9 +70,10 @@ export default function FormAddPeople ({travel, update}) {
                 name="firstName"
                 value={formData.firstName}
                 onChange={changeFormData}
+                required
               />
             </div>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
               <label htmlFor="lastName">Cognome</label>
               <input
                 className="form-control"
@@ -59,9 +82,10 @@ export default function FormAddPeople ({travel, update}) {
                 name="lastName"
                 value={formData.lastName}
                 onChange={changeFormData}
+                required
               />
             </div>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
               <label htmlFor="idCode">Codice fiscale</label>
               <input
                 className="form-control"
@@ -70,27 +94,32 @@ export default function FormAddPeople ({travel, update}) {
                 name="idCode"
                 value={formData.idCode}
                 onChange={changeFormData}
+                required
               />
             </div>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
                 <label htmlFor="email">Email</label>
                 <input className="form-control" 
                 type="email"
                 id="email"
                 name="email"
                 value={formData.email} 
-                onChange={changeFormData}/>
+                onChange={changeFormData}
+                required
+                />
             </div>
-            <div className="col-4">
+            <div className="col-sm-12 col-md-6 col-lg-4">
                 <label htmlFor="phone">Telefono</label>
                 <input className="form-control" 
                 type="text"
                 id="phone"
                 name="phone"
                 value={formData.phone} 
-                onChange={changeFormData}/>
+                onChange={changeFormData}
+                required
+                />
             </div>
-            <div className="col-4 text-end">
+            <div className="col-sm-12 col-md-6 col-lg-4 text-end">
                 <button className="btn btn-primary" type="submit">Aggiungi partecipante</button>
             </div>
           </form>

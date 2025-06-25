@@ -1,0 +1,12 @@
+.home-img {
+    height: 100px;
+    width: 120px;
+    border-radius: 30px;
+}
+
+/* body {
+    background-image: url(../../../public/img/iconBooroad.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: opacity(50px);
+} */
