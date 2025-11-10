@@ -1,6 +1,6 @@
 .home-img {
-    height: 100px;
-    width: 120px;
+    height: 90px;
+    width: 110px;
     border-radius: 30px;
 }
 
@@ -10,3 +10,15 @@
     background-size: cover;
     filter: opacity(50px);
 } */
+
+@media screen and (max-width: 576px) {
+    .home-title {
+        display: none;
+    }
+    }
+
+    @media screen and (min-width: 576px) {
+    .home-title-mobile {
+        display: none;
+    }
+    }
